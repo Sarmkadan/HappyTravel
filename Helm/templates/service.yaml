@@ -1,0 +1,15 @@
+{{- $svcPort := .Values.service.port -}}
+{{- $nginxPort := .Values.nginx.port -}}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Chart.Name }}
+  labels:
+    app: {{ .Chart.Name }}
+spec:
+  ports:
+    - port: {{ $svcPort }}
+      targetPort: {{ $nginxPort }}
+      protocol: TCP
+  selector:
+    app: {{ .Chart.Name }}

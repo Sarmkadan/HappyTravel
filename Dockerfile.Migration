@@ -1,0 +1,12 @@
+FROM mcr.microsoft.com/dotnet/core/sdk:2.2.204
+ARG Configuration=Release
+ARG VAULT_TOKEN
+ENV HTDC_VAULT_TOKEN=$VAULT_TOKEN
+
+WORKDIR /src
+
+COPY . .
+
+WORKDIR /src/HappyTravel.Edo.Data
+
+CMD dotnet ef database update

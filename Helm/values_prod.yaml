@@ -1,0 +1,19 @@
+env:
+  ASPNETCORE_ENVIRONMENT: "Production"
+  HTDC_VAULT_ENDPOINT: "https://vault.happytravel.com/v1/"
+  HTDC_EDO_SENTRY_ENDPOINT: "https://455332de0a2a4b30b1c3640cae2c7e4e@sentry.dev.happytravel.com/8"
+ingress:
+  enabled: true
+  annotations:
+    projectcontour.io/ingress.class: "contour"
+    projectcontour.io/retry-on: "5xx"
+    projectcontour.io/num-retries: "3"
+    projectcontour.io/per-try-timeout: "120s"
+    projectcontour.io/response-timeout: "120s"
+  hosts:
+    - host: edo-api.happytravel.com
+      paths: [/]
+
+  tls: 
+    - hosts:
+        - edo-api.happytravel.com

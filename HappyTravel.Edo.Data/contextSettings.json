@@ -1,0 +1,13 @@
+{
+  "EDO": {
+    "Database": {
+      "Options": "edo/connection-string"
+    }
+  },
+  "Vault": {
+    "Endpoint": "HTDC_VAULT_ENDPOINT",
+    "Engine": "secrets",
+    "Role": "edo",
+    "Token": "HTDC_VAULT_TOKEN"
+  }
+}

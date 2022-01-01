@@ -1,0 +1,24 @@
+version: "3.5"
+services:
+  edo-api:
+    build:
+      context: .
+    container_name: edo-api
+    env_file: dev.env
+    expose:
+      - "80"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:80/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+  nginx:
+    image: nginx:1.16.0-alpine
+    container_name: edo-nginx
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - edo-api
+    ports:
+      - "80:80"
